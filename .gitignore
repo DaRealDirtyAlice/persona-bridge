@@ -1,0 +1,34 @@
+# Private personas and source material
+personas/private/
+private/
+source-data/
+
+# Credentials and local tool state
+.env
+.env.*
+!.env.example
+.codex-temp/
+*.pem
+*.key
+*password*
+*secret*
+*token*
+
+# Real networking data and generated artifacts
+outputs/
+runtime/
+runs/
+backups/
+screenshots/
+*.xlsx
+*.xls
+*.ndjson
+*.jsonl
+
+# Local/editor files
+.DS_Store
+.idea/
+.vscode/
+node_modules/
+dist/
+coverage/

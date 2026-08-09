@@ -1,0 +1,37 @@
+{
+  "run_id": "2026-08-09-fictional-demo",
+  "created_at": "2026-08-09T12:00:00-04:00",
+  "objective": "Learn how alumni moved from IT support into security operations",
+  "target_mix": {
+    "alumni": 0.4,
+    "similar_background": 0.3,
+    "senior_practitioner": 0.2,
+    "hiring_manager": 0.1
+  },
+  "candidates": [
+    {
+      "contact_id": "fictional-contact-001",
+      "canonical_url": "https://www.linkedin.com/in/fictional-contact-001/",
+      "target_group": "alumni",
+      "relevance_evidence": "Fictional alumnus with a support-to-security career path",
+      "personalized_detail": "Publicly described endpoint troubleshooting as useful SOC preparation",
+      "draft_note": "Hi Jordan, I noticed you moved from IT support into security operations after graduating from the same program. I'm exploring a similar path and was curious which support skill helped you most in your first security role.",
+      "executor_decision": "pending_review",
+      "auditor_decision": "approved",
+      "actual_send_status": "not_attempted"
+    }
+  ],
+  "conversations": [],
+  "gates": {
+    "identity": "pass",
+    "evidence": "pass",
+    "duplicate": "pass",
+    "persona": "pass",
+    "quantity": "not_applicable",
+    "mix": "not_applicable",
+    "conversation": "not_applicable",
+    "approval": "pass",
+    "sync": "not_applicable"
+  },
+  "crm_sync": "not_started"
+}

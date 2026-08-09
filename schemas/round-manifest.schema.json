@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Persona-preserving networking round manifest",
+  "type": "object",
+  "required": ["run_id", "objective", "target_mix", "candidates", "conversations", "gates", "crm_sync"],
+  "properties": {
+    "run_id": {"type": "string", "minLength": 1},
+    "created_at": {"type": "string", "format": "date-time"},
+    "objective": {"type": "string", "minLength": 1},
+    "target_mix": {
+      "type": "object",
+      "additionalProperties": {"type": "number", "minimum": 0, "maximum": 1}
+    },
+    "candidates": {"type": "array", "items": {"$ref": "#/$defs/candidate"}},
+    "conversations": {"type": "array", "items": {"$ref": "#/$defs/conversation"}},
+    "gates": {"$ref": "#/$defs/gates"},
+    "crm_sync": {"enum": ["not_started", "synced", "pending_recovery", "failed"]}
+  },
+  "$defs": {
+    "candidate": {
+      "type": "object",
+      "required": ["contact_id", "canonical_url", "target_group", "executor_decision", "auditor_decision", "actual_send_status"],
+      "properties": {
+        "contact_id": {"type": "string"},
+        "canonical_url": {"type": "string", "format": "uri"},
+        "target_group": {"type": "string"},
+        "relevance_evidence": {"type": "string"},
+        "personalized_detail": {"type": "string"},
+        "draft_note": {"type": "string", "maxLength": 300},
+        "executor_decision": {"enum": ["pending_review", "rejected"]},
+        "auditor_decision": {"enum": ["pending", "approved", "needs_revision", "rejected", "escalate_to_user"]},
+        "actual_send_status": {"enum": ["not_attempted", "pending", "sent", "failed", "duplicate"]}
+      }
+    },
+    "conversation": {
+      "type": "object",
+      "required": ["contact_id", "current_stage", "allowed_next_action", "approval_required", "status"],
+      "properties": {
+        "contact_id": {"type": "string"},
+        "current_stage": {"type": "string"},
+        "last_inbound_summary": {"type": "string"},
+        "last_outbound_summary": {"type": "string"},
+        "allowed_next_action": {"type": "string"},
+        "follow_up_due": {"type": ["string", "null"], "format": "date-time"},
+        "approval_required": {"type": "boolean"},
+        "status": {"enum": ["active", "waiting", "natural_close", "closed"]}
+      }
+    },
+    "gates": {
+      "type": "object",
+      "required": ["identity", "evidence", "duplicate", "persona", "quantity", "mix", "conversation", "approval", "sync"],
+      "additionalProperties": {"enum": ["pass", "fail", "not_applicable"]}
+    }
+  }
+}
