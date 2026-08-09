@@ -1,4 +1,6 @@
-# Persona-Preserving LinkedIn Networking for Students
+# PersonaBridge
+
+**Authentic AI-assisted networking for international students.**
 
 > Know why you want to connect before deciding whom to connect with. Preserve your own voice before using AI. Build a genuine relationship before asking for an opportunity.
 
@@ -8,7 +10,7 @@
 
 Many Chinese international students invest heavily in resumes, applications, technical practice, interviews, and certifications, but have little awareness of professional networking. Without it, students can miss practical information about roles, teams, hiring needs, career paths, and skills that rarely appears in job descriptions.
 
-This repository shares a method and reference architecture for learning how to:
+PersonaBridge shares a method and reference architecture for learning how to:
 
 - define a clear networking objective;
 - identify relevant people on LinkedIn;

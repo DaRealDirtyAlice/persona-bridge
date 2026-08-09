@@ -1,4 +1,6 @@
-# 面向中国留学生的人格保真 LinkedIn Networking 框架
+# PersonaBridge
+
+**面向中国留学生的人格保真 LinkedIn Networking 框架。**
 
 > 先明确为什么要认识一个人，再决定认识谁；先保留自己的表达，再使用 AI；先建立真实关系，再考虑机会。
 
@@ -6,7 +8,7 @@
 
 很多中国留学生把主要精力放在简历、海投、技术题、面试和证书上，却缺少 professional networking 的意识与经验。因此，他们可能错过职位描述之外的行业信息、团队需求、职业路径、技能建议和潜在机会。
 
-本项目不提供群发 Bot，而是分享一套方法论和多 Agent 参考架构，帮助学生：
+PersonaBridge 不提供群发 Bot，而是分享一套方法论和多 Agent 参考架构，帮助学生：
 
 - 明确每轮 networking 的真实目的；
 - 在 LinkedIn 上寻找合适的人；
