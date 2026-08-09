@@ -1,0 +1,73 @@
+# Fictional, non-operational example. Store a real profile outside this repository.
+profile_version: 1
+intent: automate
+objective:
+  primary: Learn how alumni moved from IT support into security operations.
+  secondary:
+    - Improve understanding of entry-level security roles.
+  success_criteria:
+    - Identify 10 evidence-backed fictional candidates in a dry run.
+    - Produce persona-consistent drafts that pass independent audit.
+target_mix:
+  alumni: 0.40
+  similar_background: 0.30
+  senior_practitioners: 0.20
+  hiring_managers: 0.10
+persona:
+  mode: manual
+  private_path: null
+  allowed_sources: []
+  forbidden_sources:
+    - private_messages
+    - email
+communication:
+  formality: friendly_professional
+  ask_one_question_at_a_time: true
+conversation_policy:
+  follow_up_days: 7
+  max_follow_ups: 1
+storage:
+  adapter: excel
+  private_location: /private/example/path
+  message_retention: summaries_only
+  recovery_log: true
+automation:
+  level: draft_only
+  enabled: false
+  capabilities:
+    discovery: true
+    enrichment: true
+    drafting: true
+    audit: true
+    reminders: false
+    crm_writes: true
+    browser_preparation: false
+    external_sending: false
+  trigger: manual
+  timezone: America/Toronto
+limits:
+  batch_size: 5
+  weekly_max: 20
+  retry_max: 1
+  token_or_api_budget: null
+  stop_conditions:
+    - identity_mismatch
+    - missing_approval
+    - storage_failure_without_recovery
+approval_matrix:
+  public_research: allowed
+  draft_generation: allowed
+  crm_write: allowed
+  connection_invitation: per_action_approval
+  ordinary_reply: per_action_approval
+  resume_or_document_sharing: per_action_approval
+  referral_request: per_action_approval
+  job_or_opportunity_request: per_action_approval
+  meeting_request: per_action_approval
+acceptance:
+  fictional_dry_run: true
+  small_real_batch: true
+  rollback_triggers:
+    - persona_gate_failure
+    - approval_gate_failure
+    - unexpected_external_action

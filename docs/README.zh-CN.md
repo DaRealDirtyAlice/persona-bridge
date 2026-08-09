@@ -4,6 +4,14 @@
 
 > 先明确为什么要认识一个人，再决定认识谁；先保留自己的表达，再使用 AI；先建立真实关系，再考虑机会。
 
+## 提供给 AI Agent 的入口
+
+当用户把本仓库交给 AI Agent 时，Agent 应先读取根目录 [`AGENTS.md`](../AGENTS.md) 和 [`agent/PROJECT.yaml`](../agent/PROJECT.yaml)，完整说明项目后再询问用户是了解、制定方案、本地部署还是启用自动化。
+
+如果用户选择部署，Agent 必须按照 [`DEPLOYMENT_INTERVIEW.md`](../agent/DEPLOYMENT_INTERVIEW.md) 和 [`QUESTIONNAIRE.yaml`](../agent/QUESTIONNAIRE.yaml) 进行条件式访谈；如果选择自动化，还必须遵循 [`AUTOMATION_DEPLOYMENT.md`](../agent/AUTOMATION_DEPLOYMENT.md)。部署配置需要经过用户确认，并先通过虚构数据 Dry Run。
+
+不支持自动发现仓库指令的 Agent，可以使用 [`bootstrap-agent.md`](../prompts/bootstrap-agent.md) 中的启动提示词。
+
 ## 项目目的
 
 很多中国留学生把主要精力放在简历、海投、技术题、面试和证书上，却缺少 professional networking 的意识与经验。因此，他们可能错过职位描述之外的行业信息、团队需求、职业路径、技能建议和潜在机会。

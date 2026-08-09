@@ -1,0 +1,197 @@
+version: 1
+instructions:
+  ask_progressively: true
+  max_questions_per_turn: 4
+  summarize_each_section: true
+  unknown_value: undecided
+  never_request_secret_values_in_chat: true
+
+questions:
+  - id: intent.mode
+    section: intent
+    ask: Do you want to learn, create a deployment plan, implement locally, or enable automation?
+    type: enum
+    options: [learn, plan, implement, automate]
+    required: true
+
+  - id: context.career_stage
+    section: context
+    ask: What is your current career stage and job-search stage?
+    type: text
+    when: intent.mode != learn
+    required: true
+
+  - id: context.targets
+    section: context
+    ask: Which industries, roles, locations, and companies are you targeting?
+    type: object
+    when: intent.mode != learn
+    required: true
+
+  - id: objective.primary
+    section: objective
+    ask: What is the single primary purpose of this networking deployment?
+    type: text
+    when: intent.mode != learn
+    required: true
+
+  - id: objective.success_criteria
+    section: objective
+    ask: What outcomes would make one round useful?
+    type: list
+    when: objective.primary is set
+    required: true
+
+  - id: targeting.groups
+    section: targeting
+    ask: Which target-person groups should be included and excluded?
+    type: object
+    when: objective.primary is set
+    required: true
+
+  - id: targeting.weights
+    section: targeting
+    ask: What weight should each included group receive? The total must equal 1.0.
+    type: weighted_map
+    validate: sum == 1.0
+    when: targeting.groups is set
+    required: true
+
+  - id: persona.exists
+    section: persona
+    ask: Do you already have a private persona or communication-style profile?
+    type: boolean
+    when: intent.mode != learn
+    required: true
+
+  - id: persona.creation_method
+    section: persona
+    ask: Do you want to use dot-skill, create a manual profile, or defer persona creation?
+    type: enum
+    options: [dot_skill, manual, defer]
+    when: persona.exists == false
+    required: true
+
+  - id: persona.allowed_sources
+    section: persona
+    ask: Which private source types may be used, and which are forbidden?
+    type: object
+    when: persona.creation_method == dot_skill
+    required: true
+
+  - id: persona.private_path
+    section: persona
+    ask: Where will the existing private persona be loaded from?
+    type: local_path
+    when: persona.exists == true
+    required: true
+
+  - id: communication.policy
+    section: communication
+    ask: Define preferred formality, length, question count, language texture, and phrases to avoid.
+    type: object
+    when: intent.mode != learn
+    required: true
+
+  - id: conversation.follow_up
+    section: conversation
+    ask: Define wait duration, maximum follow-ups, natural-close behavior, and stage-advance evidence.
+    type: object
+    when: intent.mode != learn
+    required: true
+
+  - id: storage.adapter
+    section: storage
+    ask: Which durable store should be used?
+    type: enum
+    options: [excel, google_sheets, database]
+    when: intent.mode in [implement, automate]
+    required: true
+
+  - id: storage.google_sheet
+    section: storage
+    ask: Should the agent create a new private Google Sheet or use an existing one?
+    type: enum
+    options: [create_private, existing]
+    when: storage.adapter == google_sheets
+    required: true
+
+  - id: storage.excel_path
+    section: storage
+    ask: Where should the private Excel workbook and recovery log be stored?
+    type: local_path
+    when: storage.adapter == excel
+    required: true
+
+  - id: storage.database_details
+    section: storage
+    ask: Which database type and secret-management mechanism will be used?
+    type: object
+    when: storage.adapter == database
+    required: true
+
+  - id: privacy.transcripts
+    section: privacy
+    ask: May full message text be stored, or only structured summaries?
+    type: enum
+    options: [summaries_only, full_text_private, no_message_storage]
+    when: intent.mode in [implement, automate]
+    required: true
+
+  - id: automation.level
+    section: automation
+    ask: Choose guidance-only, draft-only, supervised, or bounded low-risk automation.
+    type: enum
+    options: [guidance_only, draft_only, supervised, bounded_low_risk]
+    when: intent.mode == automate
+    required: true
+
+  - id: automation.capabilities
+    section: automation
+    ask: Separately allow or deny discovery, enrichment, drafting, audit, reminders, CRM writes, browser preparation, and external sending.
+    type: capability_matrix
+    when: automation.level in [supervised, bounded_low_risk]
+    required: true
+
+  - id: automation.schedule
+    section: automation
+    ask: What trigger, timezone, run window, batch limit, and weekly limit should apply?
+    type: object
+    when: automation.level == bounded_low_risk
+    required: true
+
+  - id: automation.external_action_approval
+    section: automation
+    ask: Confirm which external actions require approval immediately before execution.
+    type: approval_matrix
+    when: automation.capabilities.external_sending == true
+    required: true
+
+  - id: automation.browser
+    section: automation
+    ask: Will browser actions use a supervised signed-in session, or remain disabled?
+    type: enum
+    options: [disabled, supervised_session]
+    when: automation.capabilities.browser_preparation == true or automation.capabilities.external_sending == true
+    required: true
+
+  - id: limits.cost_and_retries
+    section: limits
+    ask: Define token/API budget, retry limit, and speed-versus-accuracy preference.
+    type: object
+    when: intent.mode in [implement, automate]
+    required: true
+
+  - id: limits.stop_conditions
+    section: limits
+    ask: Which identity, platform, storage, cost, volume, and quality events must pause the system?
+    type: list
+    when: intent.mode in [implement, automate]
+    required: true
+
+  - id: acceptance.criteria
+    section: acceptance
+    ask: Define dry-run pass criteria, sampling requirements, blocking errors, and rollback triggers.
+    type: object
+    when: intent.mode in [implement, automate]
+    required: true

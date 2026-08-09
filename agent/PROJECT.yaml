@@ -1,0 +1,66 @@
+project:
+  name: PersonaBridge
+  type: persona_preserving_networking_framework
+  audience:
+    primary:
+      - Chinese international students
+      - international job seekers
+
+purpose:
+  primary: Help users build intentional professional relationships while preserving their authentic communication style.
+  secondary:
+    - discover practical industry information
+    - learn career paths
+    - receive appropriate professional guidance
+    - maintain long-term networking context
+
+non_goals:
+  - mass messaging
+  - connection-count growth hacking
+  - automatic referral requests
+  - impersonation
+  - bypassing platform controls
+  - autonomous sensitive communication
+  - guaranteeing employment
+
+principles:
+  - objective_before_outreach
+  - persona_before_generation
+  - evidence_before_personalization
+  - relationship_before_opportunity
+  - human_approval_before_sensitive_action
+  - durable_state_before_completion
+  - least_autonomy_by_default
+
+roles:
+  main_orchestrator: Defines each round, coordinates agents, enforces gates, and commits durable state.
+  executor: Discovers candidates, gathers evidence, checks relevance, and drafts low-risk messages.
+  auditor: Independently verifies identity, evidence, duplication, persona consistency, target mix, and permissions.
+  conversation_maintenance: Tracks stages, context, waiting periods, natural closes, and sensitive-action escalation.
+
+deployment_states:
+  - explain
+  - confirm_intent
+  - interview
+  - specify
+  - approve
+  - deploy
+  - dry_run
+  - validate
+  - enable
+
+automation_levels:
+  guidance_only: Explain and recommend; create no operational state.
+  draft_only: Research, classify, summarize, and draft; user performs all external actions.
+  supervised: Prepare actions and require approval immediately before every external action.
+  bounded_low_risk: Automatically perform only individually listed low-risk capabilities within strict limits.
+
+always_requires_approval:
+  - resume_or_document_sharing
+  - job_or_opportunity_request
+  - referral_request
+  - meeting_request
+  - personal_information
+  - commitment
+  - sensitive_or_ambiguous_reply
+  - uncertain_identity

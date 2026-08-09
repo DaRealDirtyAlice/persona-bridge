@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PersonaBridge Deployment Profile",
+  "type": "object",
+  "required": ["profile_version", "intent", "objective", "target_mix", "persona", "communication", "storage", "automation", "limits", "approval_matrix", "acceptance"],
+  "properties": {
+    "profile_version": {"type": "integer", "minimum": 1},
+    "intent": {"enum": ["plan", "implement", "automate"]},
+    "objective": {
+      "type": "object",
+      "required": ["primary", "success_criteria"],
+      "properties": {
+        "primary": {"type": "string", "minLength": 1},
+        "secondary": {"type": "array", "items": {"type": "string"}},
+        "success_criteria": {"type": "array", "items": {"type": "string"}, "minItems": 1}
+      }
+    },
+    "target_mix": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"type": "number", "minimum": 0, "maximum": 1}
+    },
+    "persona": {
+      "type": "object",
+      "required": ["mode", "private_path", "allowed_sources", "forbidden_sources"],
+      "properties": {
+        "mode": {"enum": ["existing", "dot_skill", "manual", "deferred"]},
+        "private_path": {"type": ["string", "null"]},
+        "allowed_sources": {"type": "array", "items": {"type": "string"}},
+        "forbidden_sources": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "communication": {"type": "object"},
+    "conversation_policy": {"type": "object"},
+    "storage": {
+      "type": "object",
+      "required": ["adapter", "private_location", "message_retention", "recovery_log"],
+      "properties": {
+        "adapter": {"enum": ["excel", "google_sheets", "database"]},
+        "private_location": {"type": "string"},
+        "message_retention": {"enum": ["summaries_only", "full_text_private", "no_message_storage"]},
+        "recovery_log": {"type": "boolean"}
+      }
+    },
+    "automation": {
+      "type": "object",
+      "required": ["level", "capabilities", "trigger", "enabled"],
+      "properties": {
+        "level": {"enum": ["guidance_only", "draft_only", "supervised", "bounded_low_risk"]},
+        "enabled": {"type": "boolean"},
+        "capabilities": {"type": "object", "additionalProperties": {"type": "boolean"}},
+        "trigger": {"enum": ["manual", "local_schedule", "agent_automation", "ci_analysis_only", "webhook"]},
+        "timezone": {"type": "string"}
+      }
+    },
+    "limits": {
+      "type": "object",
+      "required": ["batch_size", "weekly_max", "retry_max", "stop_conditions"],
+      "properties": {
+        "batch_size": {"type": "integer", "minimum": 1},
+        "weekly_max": {"type": "integer", "minimum": 1},
+        "retry_max": {"type": "integer", "minimum": 0},
+        "token_or_api_budget": {"type": ["number", "null"], "minimum": 0},
+        "stop_conditions": {"type": "array", "items": {"type": "string"}, "minItems": 1}
+      }
+    },
+    "approval_matrix": {"type": "object", "additionalProperties": {"enum": ["allowed", "per_action_approval", "disabled"]}},
+    "acceptance": {
+      "type": "object",
+      "required": ["fictional_dry_run", "small_real_batch", "rollback_triggers"],
+      "properties": {
+        "fictional_dry_run": {"type": "boolean"},
+        "small_real_batch": {"type": "boolean"},
+        "rollback_triggers": {"type": "array", "items": {"type": "string"}, "minItems": 1}
+      }
+    }
+  }
+}

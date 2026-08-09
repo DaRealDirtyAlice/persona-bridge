@@ -6,6 +6,20 @@
 
 [中文说明](docs/README.zh-CN.md) · [Architecture](docs/ARCHITECTURE.md) · [Privacy](docs/PRIVACY.md) · [Persona distillation: dot-skill](https://github.com/titanwings/colleague-skill)
 
+## For AI agents
+
+If you are an AI agent helping a user understand or deploy PersonaBridge:
+
+1. Read [`AGENTS.md`](AGENTS.md) and [`agent/PROJECT.yaml`](agent/PROJECT.yaml).
+2. Explain the project before proposing implementation.
+3. If the user wants deployment, follow [`agent/DEPLOYMENT_INTERVIEW.md`](agent/DEPLOYMENT_INTERVIEW.md).
+4. Evaluate conditional questions from [`agent/QUESTIONNAIRE.yaml`](agent/QUESTIONNAIRE.yaml).
+5. If automation is requested, follow [`agent/AUTOMATION_DEPLOYMENT.md`](agent/AUTOMATION_DEPLOYMENT.md).
+6. Generate a private Deployment Profile and wait for explicit approval.
+7. Complete a fictional dry run before using real data or performing external actions.
+
+For agents that do not automatically discover repository instructions, use the copyable [`bootstrap-agent.md`](prompts/bootstrap-agent.md) prompt.
+
 ## Why this project exists
 
 Many Chinese international students invest heavily in resumes, applications, technical practice, interviews, and certifications, but have little awareness of professional networking. Without it, students can miss practical information about roles, teams, hiring needs, career paths, and skills that rarely appears in job descriptions.
@@ -99,9 +113,11 @@ AI may assist with research, classification, summarization, drafting, review, an
 
 ```text
 docs/        Method, architecture, and privacy guidance
+agent/       Agent-readable project, interview, and automation protocols
 schemas/     JSON Schema for a per-round shared manifest
 templates/   Fictional persona and spreadsheet-ready CSV templates
 examples/    A completely fictional example run
+prompts/     A copyable bootstrap prompt for AI agents
 ```
 
 ## Getting started

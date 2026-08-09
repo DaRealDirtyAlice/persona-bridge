@@ -2,6 +2,7 @@
 personas/private/
 private/
 source-data/
+deployment/
 
 # Credentials and local tool state
 .env
